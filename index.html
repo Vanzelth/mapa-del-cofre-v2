@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mapa del Cofre - Servidor América</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>🗺️ Mapa del Cofre</h1>
+
+        <p class="server">
+            🌎 Servidor América
+        </p>
+
+    </header>
+
+    <section class="main-card">
+
+        <h2 id="statusTitle">
+            📦 El Cofre aparecerá en
+        </h2>
+
+        <div id="countdown">
+            00:00:00
+        </div>
+
+        <div class="progress">
+
+            <div id="progress-bar"></div>
+
+        </div>
+
+    </section>
+
+    <section class="clock-card">
+
+        <h3>🇨🇱 Hora actual (Chile)</h3>
+
+        <div id="chileClock">
+            00:00:00
+        </div>
+
+    </section>
+
+    <section class="countries-card">
+
+        <h3>🌎 Horarios mundiales</h3>
+
+        <div id="countryTable"></div>
+
+    </section>
+
+    <section class="next-card">
+
+        <h3>📅 Próximos Cofres</h3>
+
+        <div id="spawnList"></div>
+
+    </section>
+
+    <section class="settings-card">
+
+        <h3>⚙ Configuración</h3>
+
+        <label>
+            <input type="checkbox" id="soundEnabled" checked>
+            Sonidos
+        </label>
+
+        <label>
+            <input type="checkbox" id="notifyEnabled">
+            Notificaciones
+        </label>
+
+        <label>
+            <input type="checkbox" id="secondsEnabled" checked>
+            Mostrar segundos
+        </label>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
