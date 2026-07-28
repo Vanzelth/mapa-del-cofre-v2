@@ -257,7 +257,83 @@ function updateProgressBar(){
 
 }
 
+function updateWorldTimes(){
 
+    const windowData = getCurrentWindow();
+
+    const target = windowData.active
+        ? windowData.start
+        : windowData.start;
+
+    const groups = {};
+
+    countries.forEach(country=>{
+
+        const hour = target.toLocaleTimeString("es-CL",{
+
+            hour:"2-digit",
+            minute:"2-digit",
+            hour12:false,
+
+            timeZone:country.zone
+
+        });
+
+        if(!groups[hour]){
+
+            groups[hour]=[];
+
+        }
+
+        groups[hour].push(country);
+
+    });
+
+    countryTable.innerHTML="";
+
+    Object.keys(groups)
+
+        .sort()
+
+        .forEach(hour=>{
+
+            const row=document.createElement("div");
+
+            row.className="country-row";
+
+            const flags=document.createElement("div");
+
+            flags.className="country-flags";
+
+            groups[hour].forEach(country=>{
+
+                const img=document.createElement("img");
+
+                img.src=country.flag;
+
+                img.title=country.name;
+
+                img.loading="lazy";
+
+                flags.appendChild(img);
+
+            });
+
+            const time=document.createElement("div");
+
+            time.className="country-time";
+
+            time.textContent="🕒 "+hour;
+
+            row.appendChild(flags);
+
+            row.appendChild(time);
+
+            countryTable.appendChild(row);
+
+        });
+
+}
 
 // ------------------------------------------------------
 
@@ -268,6 +344,8 @@ function update(){
     updateCountdown();
 
     updateProgressBar();
+
+    updateWorldTimes();
 
 }
 
