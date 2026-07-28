@@ -295,3 +295,65 @@ header h1{
     }
 
 }
+
+.country-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.country-flags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    flex:1;
+
+}
+
+.country-flags img{
+
+    width:30px;
+
+    height:22px;
+
+    border-radius:4px;
+
+    transition:.2s;
+
+    cursor:pointer;
+
+}
+
+.country-flags img:hover{
+
+    transform:scale(1.18);
+
+}
+
+.country-time{
+
+    width:90px;
+
+    text-align:right;
+
+    color:var(--gold);
+
+    font-weight:bold;
+
+    font-size:1.2rem;
+
+}
