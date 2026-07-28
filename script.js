@@ -60,3 +60,166 @@ const countries = [
     {flag:"https://flagcdn.com/w40/br.png",zone:"America/Sao_Paulo"}
 
 ];
+
+// ======================================================
+// FUNCIONES
+// ======================================================
+
+// Devuelve el inicio de la ventana actual o siguiente
+function getCurrentWindow() {
+
+    const now = new Date();
+
+    const elapsed = now - BASE;
+
+    const cycles = Math.floor(elapsed / INTERVAL);
+
+    const start = new Date(BASE.getTime() + cycles * INTERVAL);
+    const end = new Date(start.getTime() + WINDOW);
+
+    if (now < start) {
+        return {
+            start: start,
+            end: end,
+            active: false
+        };
+    }
+
+    if (now >= start && now < end) {
+        return {
+            start: start,
+            end: end,
+            active: true
+        };
+    }
+
+    const nextStart = new Date(start.getTime() + INTERVAL);
+
+    return {
+        start: nextStart,
+        end: new Date(nextStart.getTime() + WINDOW),
+        active: false
+    };
+
+}
+
+
+// ------------------------------------------------------
+
+function updateChileClock(){
+
+    chileClock.textContent =
+        new Date().toLocaleTimeString("es-CL",{
+
+            hour:"2-digit",
+            minute:"2-digit",
+            second:"2-digit",
+
+            hour12:false,
+
+            timeZone:"America/Santiago"
+
+        });
+
+}
+
+
+// ------------------------------------------------------
+
+function updateCountdown(){
+
+    const now = new Date();
+
+    const windowData = getCurrentWindow();
+
+    let diff;
+
+    if(windowData.active){
+
+        statusTitle.textContent =
+            "🟢 EL COFRE YA APARECIÓ";
+
+        diff = windowData.end - now;
+
+        progressBar.style.background =
+            "linear-gradient(90deg,#26d07c,#66ff99)";
+
+    }
+
+    else{
+
+        statusTitle.textContent =
+            "📦 El Cofre aparecerá en";
+
+        diff = windowData.start - now;
+
+        progressBar.style.background =
+            "linear-gradient(90deg,#2fa8ff,#26d07c)";
+
+    }
+
+    const h =
+        Math.floor(diff / 3600000);
+
+    const m =
+        Math.floor((diff % 3600000) / 60000);
+
+    const s =
+        Math.floor((diff % 60000) / 1000);
+
+    countdown.textContent =
+        `${String(h).padStart(2,'0')}:` +
+        `${String(m).padStart(2,'0')}:` +
+        `${String(s).padStart(2,'0')}`;
+
+}
+
+// ------------------------------------------------------
+
+function updateProgressBar(){
+
+    const now = new Date();
+
+    const windowData = getCurrentWindow();
+
+    let percent;
+
+    if(windowData.active){
+
+        percent =
+            ((now-windowData.start)/WINDOW)*100;
+
+    }
+
+    else{
+
+        const previous =
+            new Date(windowData.start.getTime()-INTERVAL);
+
+        percent =
+            ((now-previous)/INTERVAL)*100;
+
+    }
+
+    progressBar.style.width =
+        Math.max(0,Math.min(100,percent))+"%";
+
+}
+
+
+
+// ------------------------------------------------------
+
+function update(){
+
+    updateChileClock();
+
+    updateCountdown();
+
+    updateProgressBar();
+
+}
+
+update();
+
+setInterval(update,1000);
