@@ -1,99 +1,136 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mapa del Cofre - Servidor América</title>
 
-    <link rel="stylesheet" href="style.css">
+<title>Mapa del Cofre | Servidor América</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
 
 </head>
 
 <body>
 
-<div class="container">
 
-    <header>
+<div class="background-glow"></div>
 
-        <h1>🗺️ Mapa del Cofre</h1>
+<div class="app">
 
-        <p class="server">
-            🌎 Servidor América
-        </p>
+    <header class="header">
+
+        <div class="header-left">
+            <h1>🗺️ Mapa del Cofre</h1>
+            <p>Servidor América</p>
+        </div>
+
+        <div class="header-right">
+            <div class="status-badge" id="statusBadge">
+                Esperando próxima ventana
+            </div>
+        </div>
 
     </header>
 
-    <section class="main-card">
+    <main class="dashboard">
 
-        <h2 id="statusTitle">
-            📦 El Cofre aparecerá en
-        </h2>
+        <!-- CONTADOR PRINCIPAL -->
+        <section class="hero-card">
 
-        <div id="countdown">
-            00:00:00
-        </div>
+            <div class="hero-content">
 
-        <div class="progress">
+                <div class="hero-label" id="statusTitle">
+                    📦 El Cofre aparecerá en
+                </div>
 
-            <div id="progress-bar"></div>
+                <div class="hero-countdown" id="countdown">
+                    00:00:00
+                </div>
 
-        </div>
+                <div class="hero-subtitle" id="heroSubtitle">
+                    Próxima ventana del evento
+                </div>
 
-    </section>
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
 
-    <section class="clock-card">
+            </div>
 
-        <h3>🇨🇱 Hora actual (Chile)</h3>
+        </section>
 
-        <div id="chileClock">
-            00:00:00
-        </div>
+        <!-- INFORMACIÓN RÁPIDA -->
+        <section class="info-grid">
 
-    </section>
+            <div class="info-card">
+                <span>🇨🇱 Hora de Chile</span>
+                <strong id="chileClock">00:00:00</strong>
+            </div>
 
-    <section class="countries-card">
+            <div class="info-card">
+                <span>⏳ Duración de la ventana</span>
+                <strong>15 minutos</strong>
+            </div>
 
-        <h3>🌎 Horarios mundiales</h3>
+        </section>
 
-        <div id="countryTable"></div>
+        <!-- LÍNEA DE TIEMPO -->
+        <section class="timeline-card">
 
-    </section>
+            <div class="section-header">
+                <h2>⏱️ Próximas ventanas</h2>
+                <span class="section-note">Próximas 24 horas</span>
+            </div>
 
-    <section class="next-card">
+            <div class="timeline-wrapper">
 
-        <h3>📅 Próximos Cofres</h3>
+                <div class="timeline-track">
+                    <div id="timelineProgress" class="timeline-progress"></div>
+                </div>
 
-        <div id="spawnList"></div>
+                <div id="timelineMarkers" class="timeline-markers"></div>
 
-    </section>
+            </div>
 
-    <section class="settings-card">
+        </section>
 
-        <h3>⚙ Configuración</h3>
+        <!-- HORARIOS MUNDIALES -->
+        <section class="world-card">
 
-        <label>
-            <input type="checkbox" id="soundEnabled" checked>
-            Sonidos
-        </label>
+            <div class="section-header">
+                <h2>🌎 Horarios mundiales</h2>
+                <span class="section-note">Próxima ventana</span>
+            </div>
 
-        <label>
-            <input type="checkbox" id="notifyEnabled">
-            Notificaciones
-        </label>
+            <div id="countryTable"></div>
 
-        <label>
-            <input type="checkbox" id="secondsEnabled" checked>
-            Mostrar segundos
-        </label>
+        </section>
 
-    </section>
+        <!-- PRÓXIMOS COFRES -->
+        <section class="next-card">
+
+            <div class="section-header">
+                <h2>📅 Próximos Cofres</h2>
+                <span class="section-note">Tiempo restante</span>
+            </div>
+
+            <div id="spawnList"></div>
+
+        </section>
+
+    </main>
 
 </div>
 
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 
 </body>
 
